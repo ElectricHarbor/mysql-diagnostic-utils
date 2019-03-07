@@ -1,0 +1,49 @@
+ehi_my_diag_utils prefix used in user-defined variables to prevent
+collisions with other libraries.
+
+--- Build User-Defined Variables ---
+@ehi_my_diag_utils_build_variable_old_sql_mode
+Used to save and restore @@sql_mode in scripts.
+
+@ehi_my_diag_utils_build_variable_noise_password
+Used in Create User script.
+
+@ehi_my_diag_utils_build_variable_create_user
+Used in Create User script.
+
+--- Session Configuration User-Defined Variables ---
+@ehi_my_diag_utils_session_configured_indicator
+Set to 1 in initial call to my_diag_utils.configure_session.
+Knowingly redundant with @ehi_my_diag_utils_session_configuring_block_name.
+Kept separate for code clarity.
+
+@ehi_my_diag_utils_session_configuring_block_name
+Set to the block name that initially calls
+my_diag_utils.configure_session.
+
+@ehi_my_diag_utils_request_tracking_id
+Set to a UUID to allow request tracking between external systems and
+database code. Used when processing conditions and doing traces.
+
+@ehi_my_diag_utils_debug_indicator
+Set to 1 to enable "print" behavior in calls to my_diag_utils.tell.
+
+@ehi_my_diag_utils_trace_indicator
+Set to 1 to enable trace logging in calls to my_diag_utils.tell.
+
+@ehi_my_diag_utils_profile_indicator
+Set to 1 to inform user code to optionally provide profiling information
+to my_diag_utils.tell.
+
+--- Condition Processor User-Defined Variables ---
+@ehi_my_diag_utils_condition_event_in_progress_indicator
+Set to 1 first time my_diag_utils.process_conditions is called in a
+chain.
+
+@ehi_my_diag_utils_condition_event_timestamp
+Set to CURRENT_TIMESTAMP() first time my_diag_utils.process_conditions
+is called in a chain.
+
+@ehi_my_diag_utils_call_stack_json
+Stores the ongoing call stack during condition processing. Consists of
+processing block name and details JSON.

@@ -1,0 +1,22 @@
+Branch the code into three main versions:
+    MySQL < 5.7.2 (Oracle lists MySQL 5.7 EOL as October 21, 2023)
+    MySQL >= 5.7.2
+    MariaDB
+
+Review pros/cons of adding compression to tables.
+
+DECLARE CONTINUE HANDLER Support
+Support use cases where a CONTINUE handler is used instead of an EXIT
+handler.
+
+Non-DECLARE HANDLER-based Condition Logging
+Support use cases where DECLARE HANDLER is not used, but instead
+calls are made to GET DIAGNOSTICS NUMBER after statements to
+check for various non-fatal conditions, followed by calls to a
+logging procedure in this library. This could be useful as well in
+cases where non-strict SQL modes are used and the DECLARE HANDLER
+doesn't catch SQLWARNING conditions.
+
+Logging Percentage
+Add ability to specify % of condition events to log. Implementation
+would use a random number generator to select logged events.

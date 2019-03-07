@@ -1,0 +1,22 @@
+SQL Mode Setting
+The SQL mode is set and restored in each individual routine and view file to prevent
+undesired behavior when files are modified and run independent of the
+library as a whole. This is mainly a development-time fail-safe.
+
+Incorrect Usage Signaling
+This library signals when it detects incorrect usage. Before usage
+errors are signaled, the session is reset with the exception of
+incorrect usage of my_diag_utils.configure_session.
+
+Internal Condition Handling
+To reduce condition processing complexity, private procedures do not
+implement condition handlers. In fact, none of the my_diag_utils routines
+use condition handlers. All internally generated signals are deemed
+fatal and indicate bugs, incorrect usage, or instance issues like tables
+locked or out of space.
+
+@ehi_my_diag_utils_session_configuring_block_name versus
+my_diag_utils.condition_event.flushing_block_name
+With proper usage and no nesting of top-level routines, these domains
+will always be identical. They were kept distinct from a naming
+perspective to make their names match their contextual roles.

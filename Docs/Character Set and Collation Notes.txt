@@ -1,0 +1,5 @@
+my_diag_utils schema created with collation utf8mb4_unicode_520_ci,
+which will automatically set character set to utf8mb4.
+
+utf8mb4_unicode_520_ci will be replaced with utf8mb4_0900_ai_ci once
+available in MariaDB.

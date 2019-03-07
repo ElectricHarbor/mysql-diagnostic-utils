@@ -1,0 +1,43 @@
+--- Data Domains Tighly Coupled to MySQL/MariaDB ---
+GET DIAGNOSTICS NUMBER and my_diag_utils.conditions.condition_value
+Data type derived from @@max_error_count range, which is
+0 - 65535. The value ranges from 1 to N depending on the value
+returned by GET DIAGNOSTICS NUMBER. Docs list data type as INTEGER,
+but used SMALLINT UNSIGNED as it covers the currently allowed range.
+
+GET DIAGNOSTICS RETURNED_SQLSTATE and my_diag_utils.conditions.sql_state_code
+SQLSTATE is a SQL standards defined CHAR(5).
+
+GET DIAGNOSTICS MYSQL_ERRNO and my_diag_utils.conditions.mysql_error_code
+There are conflicting docs on unsigned versus signed for MYSQL_ERRNO.
+MySqlErrorCode will likely always be non-negative, but using signed as
+fail-safe per obscure comment about negative error codes here:
+    https://mariadb.com/kb/en/library/perror/
+
+    'If you need to describe a negative error code, use -- before the first error code to end the options.'
+
+GET DIAGNOSTICS MESSAGE_TEXT and my_diag_utils.conditions.message_text
+MessageText length is from MYSQL_ERRMSG_SIZE constant in MySQL source
+as of February, 2019.
+
+--- Data Domains Loosely Coupled to MySQL/MariaDB ---
+my_diag_utils.call_stacks.reverse_call_stack_level_value
+TINYINT UNSIGNED to match max value of @@max_sp_recursion_depth. This is
+not an exact domain match, but rather a best guess on how deep MySQL
+routine nesting can go. It is 1 based.
+
+*_block_name VARCHAR(194)
+schema name VARCHAR(64) + . + table name VARCHAR(64) + . + arbitrary
+code block name VARCHAR(64). Block names can be labels or any other
+arbitrary name. MySQL labels can be up to 16 characters but using 64 to
+give more capacity for non-label use cases. (These notes do not imply
+anything about label visibility within a DECLARE HANDLER. See MySQL docs.)
+
+Recommended use for this domain is 'schema_name.routine_name.block_name'
+to allow for future views that split *_block_name into schema, routine and
+block components for easier filtering.
+
+Not that if dots are used inside of identifier names (e.g. 'my.schema.name'),
+the future views that attempt split block names into components will likely
+malfunction.
+

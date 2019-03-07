@@ -1,0 +1,9 @@
+MariaDB SQL Error Log Plugin
+https://mariadb.com/kb/en/library/sql-error-log-plugin/
+Stable as of MariaDB 10.1.13.
+
+Log % rate.
+Rotating logs.
+
+Missing features:
+Likely only logs condition 1, so no call stack notes.

@@ -1,0 +1,23 @@
+This library and the example patterns use the strictest SQL modes
+available unless otherwise noted.
+
+TRADITIONAL
+    This combination mode is enabled to apply several strict checks.
+
+ONLY_FULL_GROUP_BY
+    This mode is enabled to force proper use of GROUP BY.
+
+IGNORE_SPACE
+    This mode is used to enable more flexible routine formatting.
+
+NO_AUTO_VALUE_ON_ZERO
+    This mode is enabled to prevent sloppy use of zero in auto
+    increment tables.
+
+NO_ENGINE_SUBSTITUTION
+    This mode is enabled to ensure ACID compliance. It can be disabled
+    on a per-object basis as desired, for example to store tables using
+    the MyISAM engine for compression reasons.
+
+    Note: There is possible difference between MySQL and MariaDB on
+    this mode being part of TRADITIONAL so it is listed separately.

@@ -1,0 +1,13 @@
+There are MariaDB bugs related to how conditions are resignaled.
+These will be referenced in a future commit after additional research is
+conducted and MariaDB (and possibly MySQL) teams are notified.
+
+At a high level, the bugs relate to preferential handling of CONDITION 1,
+discarding of ER_SP_STACK_TRACE unless RESIGNAL modifies DA (NOP or not),
+and partial restoration of DA (only last item) during RESIGNAL when DA was
+cleared because of DML in a condition handler.
+
+As a result of these bugs, SHOW WARNINGS does not return accurate
+information when used in scripts that call routines using my_diag_utils
+for condition processing. Workaround is to rely on the logged data in
+the my_diag_utils tables.

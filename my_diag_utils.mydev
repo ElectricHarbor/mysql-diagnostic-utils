@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Devart (www.devart.com), the Project File -->
+<!-- Modifying this generated file will probably render it invalid -->
+<DatabaseProject Version="1.0.1" Guid="d0f3afc5-d45e-40e2-83ac-b43e6b32fafa">
+  <Provider Guid="59f90733-4d68-4fdf-82a7-f0fcbf5460aa" />
+  <Include>
+    <Folder Name="Events" />
+    <Folder Name="Triggers" />
+    <File RelPath="Docs" Link=".\Docs\Character Set and Collation Notes.txt" />
+    <File RelPath="Docs" Link=".\Docs\Data Domain Notes.txt" />
+    <File RelPath="Docs" Link=".\Docs\Design Notes.txt" />
+    <File RelPath="Docs" Link=".\Docs\MariaDB Bugs.txt" />
+    <File RelPath="Docs" Link=".\Docs\Roadmap.txt" />
+    <File RelPath="Docs" Link=".\Docs\SQL Mode Notes.txt" />
+    <File RelPath="Docs" Link=".\Docs\User-Defined Variables Glossary.txt" />
+    <File RelPath="Functions" Link=".\Functions\get_conditions_json.sql" />
+    <File RelPath="Functions" Link=".\Functions\private_get_estimated_signaling_block_name.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\configure_session.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\configure_simple_session.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\private_append_to_call_stack.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\private_flush_call_stack.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\private_flush_condition_event.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\private_flush_conditions.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\private_insert_condition_event.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\private_validate_flushable_condition_event.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\process_conditions.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\reset_session.sql" />
+    <File RelPath="Procedures" Link=".\Procedures\tell.sql" />
+    <File RelPath="Scripts" Link=".\Scripts\Create Role.sql" />
+    <File RelPath="Scripts" Link=".\Scripts\Create Schema.sql" />
+    <File RelPath="Scripts" Link=".\Scripts\Create User.sql" />
+    <File RelPath="Scripts" Link=".\Scripts\Grant Permissions.sql" />
+    <File RelPath="Tables" Link=".\Tables\call_stacks.sql" />
+    <File RelPath="Tables" Link=".\Tables\condition_events.sql" />
+    <File RelPath="Tables" Link=".\Tables\conditions.sql" />
+    <File RelPath="Tables" Link=".\Tables\trace_log.sql" />
+    <File RelPath="Views" Link=".\Views\first_conditions.sql" />
+    <File RelPath="" Link=".\.gitignore" />
+    <File RelPath="" Link=".\LICENSE" />
+    <File RelPath="" Link=".\README.md" />
+  </Include>
+  <Configurations Active="Default">
+    <Configuration Name="Default" CheckReferences="True" IgnoreErrors="True" OutputPath=".\bin\Default" Target="my_diag_utils" OutputType="SingleFile" KeepOriginalObjects="True" RecreateObjects="False" RecreateDatabase="False" ServerVersion="10.2.7" Database="my_diag_utils" UseRegions="False" FullPaths="False" Definer="CURRENT_USER" ScriptDelimiter="$$" StorageEngine="INNODB" Collation="utf8mb4_unicode_ci" ConvertToLowercase="False" DefinerEffect="Keep" InnoDbDefaultRowFormat="dynamic">
+      <Connection Name="localhost:3307" Category="00000000-0000-0000-0000-000000000000" ConnectionString="User Id=root;Host=localhost;Port=3307;Character Set=utf8mb4" />
+      <Build>
+        <File RelPath="Scripts" Name="Create Schema.sql" BuildAction="Build" />
+        <File RelPath="Scripts" Name="Create User.sql" BuildAction="Build" />
+        <File RelPath="Scripts" Name="Create Role.sql" BuildAction="Build" />
+        <File RelPath="Tables" Name="trace_log.sql" BuildAction="Build" />
+        <File RelPath="Tables" Name="condition_events.sql" BuildAction="Build" />
+        <File RelPath="Tables" Name="conditions.sql" BuildAction="Build" />
+        <File RelPath="Tables" Name="call_stacks.sql" BuildAction="Build" />
+        <File RelPath="Functions" Name="get_conditions_json.sql" BuildAction="Build" />
+        <File RelPath="Functions" Name="private_get_estimated_signaling_block_name.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="configure_session.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="configure_simple_session.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="reset_session.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="private_insert_condition_event.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="private_append_to_call_stack.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="private_validate_flushable_condition_event.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="private_flush_conditions.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="private_flush_call_stack.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="private_flush_condition_event.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="process_conditions.sql" BuildAction="Build" />
+        <File RelPath="Procedures" Name="tell.sql" BuildAction="Build" />
+        <File RelPath="Views" Name="first_conditions.sql" BuildAction="Build" />
+        <File RelPath="Scripts" Name="Grant Permissions.sql" BuildAction="Build" />
+      </Build>
+    </Configuration>
+  </Configurations>
+</DatabaseProject>
