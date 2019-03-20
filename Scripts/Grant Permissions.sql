@@ -21,14 +21,12 @@ GRANT SELECT ON seq_0_to_255 TO 'my_diag_utils'@'localhost';
 ROLE GRANTs
 Specific top-level library routines and views can be called by anyone
 added to the custom role 'my_diag_utils_role' (MySQL 8+ and MariaDB 10.0.5+.)
-
-Required for stored routines with DEFINER = 'my_diag_utils'@'localhost' and
-SQL SECURITY DEFINER. SQL SECURITY INVOKER not used to shield underlying
-my_diag_utils tables.
 */
 GRANT EXECUTE ON PROCEDURE my_diag_utils.configure_session TO my_diag_utils_role;
 GRANT EXECUTE ON PROCEDURE my_diag_utils.configure_simple_session TO my_diag_utils_role;
 GRANT EXECUTE ON PROCEDURE my_diag_utils.reset_session TO my_diag_utils_role;
 GRANT EXECUTE ON PROCEDURE my_diag_utils.process_conditions TO my_diag_utils_role;
 GRANT EXECUTE ON PROCEDURE my_diag_utils.tell TO my_diag_utils_role;
+GRANT EXECUTE ON FUNCTION my_diag_utils.get_conditions_json TO my_diag_utils_role;
+GRANT EXECUTE ON FUNCTION my_diag_utils.get_profile_indicator TO my_diag_utils_role;
 GRANT SELECT ON my_diag_utils.first_conditions TO my_diag_utils_role;

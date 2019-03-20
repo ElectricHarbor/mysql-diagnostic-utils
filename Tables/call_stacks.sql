@@ -10,7 +10,10 @@
         FOREIGN KEY (event_id)
         REFERENCES my_diag_utils.condition_events(event_id)
         ON UPDATE CASCADE
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+
+    CONSTRAINT ck_validate_details_json CHECK (JSON_VALID(details_json))
+
 )
 ENGINE = INNODB,
 COMMENT =
@@ -27,4 +30,7 @@ level type metadata function that could be used for gap detection.
 details_json is technically schemaless, but typical usage will
 have an object of KVPs representing processing block arguments (for
 routines), local variables, user-defined variables, and possibly
-small resultsets (e.g. from temp tables) stored as nested arrays.";
+small resultsets (e.g. from temp tables) stored as nested arrays.
+
+MariaDB doesn't support a validating JSON data type so a check was added.
+MySQL JSON data type is validated.";

@@ -52,7 +52,7 @@ BEGIN
     SET @ehi_my_diag_utils_condition_event_timestamp = NULL;
     SET @ehi_my_diag_utils_call_stack_json = NULL;
 
-    -- Clear diagnostics module shared user-defined variables.
+    -- Clear my_diag_utils library shared user-defined variables.
     SET @ehi_my_diag_utils_request_tracking_id = NULL;
     SET @ehi_my_diag_utils_debug_indicator = NULL;
     SET @ehi_my_diag_utils_trace_indicator = NULL;

@@ -5,7 +5,12 @@
     message_text VARCHAR(512) NOT NULL,
     profile_details_json JSON NULL,
     request_tracking_id CHAR(36) NULL,
-    INDEX ix_request_tracking_id (request_tracking_id)
+
+    INDEX ix_request_tracking_id (request_tracking_id),
+
+    CONSTRAINT ck_validate_details_json
+        CHECK (JSON_VALID(profile_details_json))
+
 )
 ENGINE = INNODB
 COMMENT =
@@ -20,4 +25,7 @@ type for longer strings.
 
 profile_details_json is a schemaless column for user routines to
 store profiling information. This column is designed to be used when
-both the trace_indicator and profile_indicator settings are enabled.";
+both the trace_indicator and profile_indicator settings are enabled.
+
+MariaDB doesn't support a validating JSON data type so a check was added.
+MySQL JSON data type is validated.";
