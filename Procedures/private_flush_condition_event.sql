@@ -7,7 +7,8 @@ CREATE OR REPLACE
     DEFINER = 'my_diag_utils'@'localhost'
     PROCEDURE my_diag_utils.private_flush_condition_event
     (
-        _flushing_code_block_name VARCHAR(194)
+        _flushing_code_block_name VARCHAR(194),
+        _conditions_json JSON
     )
     LANGUAGE SQL
     NOT DETERMINISTIC
@@ -41,7 +42,6 @@ BEGIN
 
     DECLARE _event_id INT UNSIGNED;
     DECLARE _estimated_signaling_block_name VARCHAR(194);
-    DECLARE _conditions_json JSON;
 
     -- Validate state.
     CALL my_diag_utils.private_validate_flushable_condition_event();
@@ -49,14 +49,6 @@ BEGIN
     -- Get estimated signaling block name. Will signal if not found.
     SET _estimated_signaling_block_name =
         my_diag_utils.private_get_estimated_signaling_block_name();
-
-    /*
-    Before touching tables with inserts, must fetch and store contents
-    of the diagnostic area (DA) as the inserts will cause the DA to be
-    cleared. Signals if no conditions found in DA.
-    */
-    SET _conditions_json =
-        my_diag_utils.get_conditions_json();
 
     -- Perform logging operations.
     CALL my_diag_utils.private_insert_condition_event

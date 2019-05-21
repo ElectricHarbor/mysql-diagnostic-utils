@@ -40,7 +40,7 @@ condition(s).
 ROLLBACK is only performed at the end of a chain to make the system a
 bit more deterministic given the flaws and limitations in MySQL/MariaDB
 explicit transaction handling. After ROLLBACK is completed, then logging
-rows can be written (with @@autocommit=1). And condition(s) signalled
+rows can be written (with @@autocommit=1). Exception condition(s) signaled
 by ROLLBACK are fatal to this routine.
 
 FUTURE
@@ -48,6 +48,9 @@ When first DECLARE HANDLER block to call this routine is in the block
 that called configure_session, the in_progress_indicator variable setting
 can be optimized away. Left as distinct steps for now for clarity."
 BEGIN
+
+    -- Used to store diagnostic area (DA) before calling ROLLBACK.
+    DECLARE _conditions_json JSON;
 
     --  Validate session state.
     IF @ehi_my_diag_utils_session_configured_indicator IS NULL THEN
@@ -113,6 +116,13 @@ BEGIN
 
         This TX check is MariaDB specific. Best that can be done with
         MySQL is a blind ROLLBACK.
+
+        The DA is fetched before ROLLBACK as a workaround
+        for signal 1196 that creates a new DA in this scope,
+        hiding the original conditions. It is also necessary to
+        fetch the DA before any inserts are performed in
+        private_flush_condition_event as inserts clear the DA in
+        this scope as well.
         
         NOTE
         While it is likely safe to just call ROLLBACK without MariaDB
@@ -120,6 +130,11 @@ BEGIN
         TXs, leaving with explicit check for possible easier transition
         to a future version that does support nested transactions.
         */
+
+        -- Signals if no conditions found in DA.
+        SET _conditions_json =
+            my_diag_utils.get_conditions_json();
+
         IF @@in_transaction THEN
             ROLLBACK;
         END IF;
@@ -130,7 +145,8 @@ BEGIN
         */
         CALL my_diag_utils.private_flush_condition_event
         (
-            _processing_block_name
+            _processing_block_name,
+            _conditions_json
         );
     END IF;
 

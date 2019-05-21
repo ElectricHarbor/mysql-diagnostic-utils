@@ -29,4 +29,5 @@ GRANT EXECUTE ON PROCEDURE my_diag_utils.process_conditions TO my_diag_utils_rol
 GRANT EXECUTE ON PROCEDURE my_diag_utils.tell TO my_diag_utils_role;
 GRANT EXECUTE ON FUNCTION my_diag_utils.get_conditions_json TO my_diag_utils_role;
 GRANT EXECUTE ON FUNCTION my_diag_utils.get_profile_indicator TO my_diag_utils_role;
+GRANT EXECUTE ON FUNCTION my_diag_utils.get_session_configured_indicator TO my_diag_utils_role;
 GRANT SELECT ON my_diag_utils.first_conditions TO my_diag_utils_role;

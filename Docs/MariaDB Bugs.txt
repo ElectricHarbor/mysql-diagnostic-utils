@@ -11,3 +11,12 @@ As a result of these bugs, SHOW WARNINGS does not return accurate
 information when used in scripts that call routines using my_diag_utils
 for condition processing. Workaround is to rely on the logged data in
 the my_diag_utils tables.
+
+MariaDB JSON_OBJECT Bug
+MariaDB up to at least 10.3.12, JSON_OBJECT (and other functions) encodes
+BIT local variables with the unicode prefix, resulting in invalid JSON
+objects. For example, JSON_OBJECT('_my_bit_1', _my_bit_1) with
+_my_bit_1 = 1, results in the invalid "{'my_bit_1': \u0001}". Workaround
+is to use BOOL/BOOLEAN alias for TINYINT(1) with the understanding it has
+valid ranges of 0-9. Another alternative is to cast the BIT to INTEGER
+within or before the call to JSON_OBJECT.

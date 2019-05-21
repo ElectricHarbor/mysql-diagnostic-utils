@@ -81,7 +81,7 @@ this: BEGIN
             SET
                 MESSAGE_TEXT =
                     'my_diag_utils.configure_session: '
-                    'When _profile_indicator is on then _debug_indicator '
+                    'When _profile_indicator is 1 then _debug_indicator '
                     'and/or _trace_indicator must also be 1.';
     END IF;        
 

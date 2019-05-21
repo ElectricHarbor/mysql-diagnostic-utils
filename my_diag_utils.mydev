@@ -15,6 +15,7 @@
     <File RelPath="Docs" Link=".\Docs\User-Defined Variables Glossary.txt" />
     <File RelPath="Functions" Link=".\Functions\get_conditions_json.sql" />
     <File RelPath="Functions" Link=".\Functions\get_profile_indicator.sql" />
+    <File RelPath="Functions" Link=".\Functions\get_session_configured_indicator.sql" />
     <File RelPath="Functions" Link=".\Functions\private_get_estimated_signaling_block_name.sql" />
     <File RelPath="Procedures" Link=".\Procedures\configure_session.sql" />
     <File RelPath="Procedures" Link=".\Procedures\configure_simple_session.sql" />
@@ -65,6 +66,7 @@
         <File RelPath="Procedures" Name="process_conditions.sql" BuildAction="Build" />
         <File RelPath="Procedures" Name="tell.sql" BuildAction="Build" />
         <File RelPath="Views" Name="first_conditions.sql" BuildAction="Build" />
+        <File RelPath="Functions" Name="get_session_configured_indicator.sql" BuildAction="Build" />
         <File RelPath="Functions" Name="get_profile_indicator.sql" BuildAction="Build" />
         <File RelPath="Scripts" Name="Grant Permissions.sql" BuildAction="Build" />
       </Build>
