@@ -27,7 +27,7 @@ Role my_diag_utils_role is used for access to the public API of this library. /S
 
         DECLARE EXIT HANDLER FOR SQLEXCEPTION
         BEGIN
-			SET ROLE my_diag_utils_role; -- Required only if <principal> is a user. Remove if <principal> is a role.
+            SET ROLE my_diag_utils_role; -- Required only if <principal> is a user. Remove if <principal> is a role.
             CALL my_diag_utils.process_conditions('my_schema.my_procedure', NULL);
         END;
 
